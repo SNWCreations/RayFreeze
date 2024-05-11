@@ -1,0 +1,4 @@
+name: RayFreeze
+version: '${version}'
+main: snw.rayfreeze.RayFreeze
+api-version: '1.20'
