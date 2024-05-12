@@ -19,7 +19,7 @@ public class Calculator extends BukkitRunnable {
     static {
         SLOW = new PotionEffect(
                 PotionEffectType.SLOW,
-                PotionEffect.INFINITE_DURATION,
+                20,
                 255,
                 false, false, false
         );
@@ -50,8 +50,14 @@ public class Calculator extends BukkitRunnable {
             }
             final World world = player.getWorld();
             final Location where = player.getLocation();
-            final Vector vector = player.getEyeLocation().getDirection().normalize();
-            final RayTraceResult result = world.rayTraceEntities(where, vector, 20);
+            final Vector vector = player.getEyeLocation().getDirection();
+            final RayTraceResult result = world.rayTraceEntities(
+                    where, vector, 20, 1,
+                    entity -> entity instanceof Player && entity != player
+            );
+            if (result == null) {
+                continue;
+            }
             final Entity hitEntity = result.getHitEntity();
             if (hitEntity instanceof Player hitPlayer) {
                 if (validHit(hitPlayer)) {
