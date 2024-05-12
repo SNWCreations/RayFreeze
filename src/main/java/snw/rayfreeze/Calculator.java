@@ -35,7 +35,7 @@ public class Calculator extends BukkitRunnable {
     }
 
     private boolean shouldCalc(Player player) {
-        return helmetIsOf(player, "rfm:yanjing");
+        return helmetIsOf(player, "tzz:yanjing");
     }
 
     private boolean validHit(Player player) {
